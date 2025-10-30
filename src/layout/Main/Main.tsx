@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import data from 'data.json';
 import mainImg from '@/assets/images/05.jpg';
 import './Envelope.css';
@@ -11,6 +11,21 @@ const Main = () => {
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isOpen && window.scrollY > 100) { // Trigger when scrolled down 100px
+        setIsOpen(true);
+        window.removeEventListener('scroll', handleScroll);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
 
   return (
     <div className="envelope-container" onClick={handleOpen}>
@@ -30,7 +45,6 @@ const Main = () => {
 export default Main;
 
 const MainImg = styled.img`
-  border-radius: 200px 200px 0 0;
   width: 90%;
   max-width: 450px;
   padding-top: 20px;
