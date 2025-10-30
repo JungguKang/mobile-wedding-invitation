@@ -1,14 +1,30 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import data from 'data.json';
-import mainImg from '@/assets/images/05.jpg'
+import mainImg from '@/assets/images/05.jpg';
+import './Envelope.css';
 
 const Main = () => {
   const { greeting } = data;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    if (!isOpen) {
+      setIsOpen(true);
+    }
+  };
+
   return (
-    <div>
-      <MainImg src={mainImg} />
-      <MainTitle>{greeting.title}</MainTitle>
-      <SubTitle>{greeting.eventDetail}</SubTitle>
+    <div className="envelope-container" onClick={handleOpen}>
+      <div className={`envelope ${isOpen ? 'open' : ''}`}>
+        <div className="letter">
+          <MainImg src={mainImg} />
+          <MainTitle>{greeting.title}</MainTitle>
+          <SubTitle>{greeting.eventDetail}</SubTitle>
+        </div>
+        <div className="envelope-front"></div>
+        <div className="flap"></div>
+      </div>
     </div>
   );
 };
