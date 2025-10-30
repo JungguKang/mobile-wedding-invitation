@@ -15,6 +15,11 @@
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   z-index: 1; /* Corrected z-index */
+  transition: transform 0.5s ease-in-out;
+}
+
+.envelope.open {
+  transform: translateY(100px);
 }
 
 .envelope-front {
@@ -60,7 +65,7 @@
   transform-origin: top;
   transition: transform 0.6s ease-in-out;
   transform: rotateX(0deg);
-  z-index: 3;
+  z-index: 2;
   /* border-radius removed to prevent trapezoid shape */
 }
 
@@ -69,30 +74,25 @@
   z-index: 2; /* Ensure flap goes behind the letter */
 }
 
-.envelope.open .envelope{
-  transform: translateY(90px);
-}
-
 .letter {
   position: absolute;
   bottom: 0;
   background: #ffffff;
   border-radius: 5px;
   box-shadow: 0 -3px 10px rgba(0,0,0,0.08);
-  width: fit-content;
+   width: fit-content;
   max-width: 260px;
   margin: 0 auto;
-  /* Added opacity to transition */
-  transition: transform 0.6s 0.15s ease-in-out, opacity 0.6s 0.15s ease-in-out;
-  z-index: 3; /* front */
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
   padding: 20px;
   text-align: center;
-  height: auto;
-  transform: translateY(0);
-  opacity: 0; /* Initially hidden */
+  opacity: 0;
+  transform: translateY(0px);
+  transition-delay: 0.3s;
+  z-index: 3;
 }
 
 .envelope.open .letter {
-  opacity: 1; /* Visible on open */
-  transform: translateY(300px);
+  opacity: 1;
+  transform: translateY(150px);
 }

@@ -9,9 +9,7 @@ const Main = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    if (!isOpen) {
-      setIsOpen(true);
-    }
+    setIsOpen(!isOpen);
   };
 
   return (
