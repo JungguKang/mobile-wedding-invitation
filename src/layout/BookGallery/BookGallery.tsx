@@ -58,11 +58,11 @@ const BookGallery: React.FC<BookGalleryProps> = ({ imagePairs = dummyImagePairs 
     };
   }, [touchStartX, imagePairs.length]);
 
-  // Collect all images for PhotoSwipe gallery
-  const allImages = imagePairs.flatMap(pair => [
-    { src: pair.left, alt: 'Left page image' },
-    { src: pair.right, alt: 'Right page image' }
-  ]);
+  // // Collect all images for PhotoSwipe gallery
+  // const allImages = imagePairs.flatMap(pair => [
+  //   { src: pair.left, alt: 'Left page image' },
+  //   { src: pair.right, alt: 'Right page image' }
+  // ]);
 
   return (
     <Gallery>
