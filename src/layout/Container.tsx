@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-const Container = styled.div`
+const Container = styled.div<{ backgroundImageUrl: string }>`
   border: 30px solid transparent; /* 테두리의 초기 값 설정 */
-  border-image-source: url('/background.png'); /* 이미지 경로 설정 */
+  border-image-source: url(${props => props.backgroundImageUrl}); /* 이미지 경로 설정 */
   border-image-slice: 30% 49%; /* 이미지의 크기 설정 */
   border-image-width: 280px; /* 테두리 이미지의 너비 설정 */
   border-image-repeat: repeat; /* 배경 이미지가 늘어나지 않고 반복되도록 설정 */
