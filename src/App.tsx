@@ -15,38 +15,8 @@ import Main from '@/layout/Main/Main.tsx';
 function App() {
   const [isVisible, setIsVisible] = useState(false);
   const galleryRef = useRef(null);
-  const location = useLocation();
-  const [backgroundImage, setBackgroundImage] = useState('/background.png'); // Default background
 
   useEffect(() => {
-    const path = location.pathname;
-    let ogImageUrl = ''; // Declare ogImageUrl here
-
-    switch (path) {
-      case '/yellow':
-        setBackgroundImage('/background_yellow.png');
-        ogImageUrl = '/thumbnail_yellow.jpg';
-        break;
-      case '/green':
-        setBackgroundImage('/background_green.png');
-        ogImageUrl = '/thumbnail_green.jpg';
-        break;
-      case '/blue':
-        setBackgroundImage('/background_blue.png');
-        ogImageUrl = '/thumbnail_blue.jpg';
-        break;
-      default:
-        setBackgroundImage('/background_blue.png');
-        ogImageUrl = '/thumbnail_blue.jpg';
-        break;
-    }
-
-    // Update og:image meta tag
-    const ogImageMeta = document.querySelector('meta[property="og:image"]');
-    if (ogImageMeta) {
-      ogImageMeta.setAttribute('content', ogImageUrl);
-    }
-
     window.addEventListener('scroll', checkScrollPosition);
     return () => {
       window.removeEventListener('scroll', checkScrollPosition);
@@ -67,7 +37,7 @@ function App() {
   };
 
   return (
-    <Container backgroundImageUrl={backgroundImage}>
+    <Container>
       <Wrapper>
         <Main />
       </Wrapper>
