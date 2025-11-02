@@ -65,7 +65,6 @@ const HostDetails = styled.div`
 const RelationText = styled.div`
   font-style: normal;
   line-height: 26px;
-  width: 50px;
   display: flex;
   gap: 6px;
 `;
