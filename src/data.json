@@ -1,38 +1,38 @@
 {
   "greeting": {
-    "title": "장세모 \uD83D\uDC8D 황네모\n결혼합니다!",
-    "message": "저희 결혼합니다.\n\n서로에게 알맞은 온도로 따뜻하던 우리.\n부부로서 첫걸음을 내딛는 그 설렘의 순간에\n소중한 분들을 초대합니다.",
+    "title": "강정구 \uD83D\uDC8D 신유리\n결혼합니다!",
+    "message": "저희 결혼합니다.\n\n2017년 2월 7일, 우리는 연인이 되었습니다. \n열 번째로 맞이하는 2월 7일 그 날에 부부가 되려 합니다. \n사랑이 시작된 날, 그 사랑에 이름을 더하려 합니다. \n그 시작의 자리에 함께해 주시면 더없는 기쁨으로 간직하겠습니다.",
     "host": {
       "groom": {
-        "name": "세모",
-        "relation": "아들",
+        "name": "정구",
+        "relation": "큰 아들",
         "parents": [
           {
             "relation": "아버지",
-            "name": "장아빠"
+            "name": "강윤석"
           },
           {
             "relation": "어머니",
-            "name": "이엄마"
+            "name": "고희경"
           }
         ]
       },
       "bride": {
-        "name": "네모",
-        "relation": "딸",
+        "name": "유리",
+        "relation": "막내 딸",
         "parents": [
           {
             "relation": "아버지",
-            "name": "황아빠"
+            "name": "신희봉"
           },
           {
             "relation": "어머니",
-            "name": "이엄마"
+            "name": "이선미"
           }
         ]
       }
     },
-    "eventDetail": "2024년 2월 17일 (토) 14:00\n아펠가모 공덕 라로브홀"
+    "eventDetail": "2026년 2월 7일 (토) 10:50\n까사그랑데 센트로"
   },
   "hostInfo": [
     {
@@ -87,7 +87,7 @@
     }
   ],
   "mapInfo": {
-    "address1": "아펠가모 공덕 라로브홀",
+    "address1": "까사그랑데 센트로",
     "address2": "서울 마포구 마포대로 92\n효성해링턴스퀘어 B동 7층\n02-2197-0230",
     "naverMap": "https://naver.me/IM4RDses",
     "kakaoMap": "https://kko.kakao.com/otznTfkVWV",
