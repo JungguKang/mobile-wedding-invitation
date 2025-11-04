@@ -4,7 +4,7 @@ import Wrapper from '@/components/Wrapper.tsx';
 import Account from '@/layout/Account/Account.tsx';
 import Container from '@/layout/Container.tsx';
 import FloatingBar from '@/layout/FloatingBar/FloatingBar.tsx';
-import GalleryWrap from '@/layout/Gallery/GalleryWrap.tsx';
+import PhotoGallery from '@/layout/Gallery/PhotoGallery.tsx';
 import BookGallery from '@/layout/BookGallery/BookGallery.tsx';
 import Guestbook from '@/layout/Guestbook/Guestbook.tsx';
 import Invitation from '@/layout/Invitation/Invitation.tsx';
@@ -46,7 +46,7 @@ function App() {
       </Wrapper>
       <Wrapper ref={galleryRef}>
         <Heading1>Gallery</Heading1>
-        <GalleryWrap />
+        <PhotoGallery />
       </Wrapper>
       <Wrapper>
         <Heading1>Our Story</Heading1>

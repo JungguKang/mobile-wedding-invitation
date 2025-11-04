@@ -3,30 +3,31 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import 'photoswipe/style.css';
 
-// Dummy image data for demonstration
-const dummyImagePairs = [
-  { left: '/public/thumbnail.jpg', right: '/public/background_1.png' },
-  { left: '/public/background.png', right: '/public/thumbnail.jpg' },
-];
+import images from './Images';
 
-interface BookGalleryProps {
-  imagePairs?: { left: string; right: string; }[];
+interface ImageInfo {
+  alt: string;
+  source: string;
+  width: number;
+  height: number;
+  date: string;
 }
 
-const BookGallery: React.FC<BookGalleryProps> = ({ imagePairs = dummyImagePairs }) => {
+import FrameImage from './FrameImage';
+
+
+
+const BookGallery: React.FC = () => {
   const [currentPairIndex, setCurrentPairIndex] = useState(0);
   const bookRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState(0);
 
-  const currentLeftImage = imagePairs[currentPairIndex]?.left;
-  const currentRightImage = imagePairs[currentPairIndex]?.right;
-
   const goToNextPair = () => {
-    setCurrentPairIndex((prevIndex) => (prevIndex + 1) % imagePairs.length);
+    setCurrentPairIndex((prevIndex) => (prevIndex + 1) % (images.length / 2));
   };
 
   const goToPrevPair = () => {
-    setCurrentPairIndex((prevIndex) => (prevIndex - 1 + imagePairs.length) % imagePairs.length);
+    setCurrentPairIndex((prevIndex) => (prevIndex - 1 + images.length / 2) % (images.length / 2));
   };
 
   // Swipe handling
@@ -56,99 +57,55 @@ const BookGallery: React.FC<BookGalleryProps> = ({ imagePairs = dummyImagePairs 
       bookElement.removeEventListener('touchstart', handleTouchStart);
       bookElement.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [touchStartX, imagePairs.length]);
-
-  // // Collect all images for PhotoSwipe gallery
-  // const allImages = imagePairs.flatMap(pair => [
-  //   { src: pair.left, alt: 'Left page image' },
-  //   { src: pair.right, alt: 'Right page image' }
-  // ]);
+  }, [touchStartX, images.length]);
 
   return (
     <Gallery>
-      <BookContainer ref={bookRef}>
+      <GalleryWrapper ref={bookRef}>
         {/* Navigation buttons (optional, for testing/fallback) */}
         <NavButton onClick={goToPrevPair} style={{ left: 0 }}>&lt;</NavButton>
         <NavButton onClick={goToNextPair} style={{ right: 0 }}>&gt;</NavButton>
 
-        <BookSpread>
-          <BookPage>
-            {currentLeftImage && (
-              <Item
-                original={currentLeftImage}
-                thumbnail={currentLeftImage}
-                width="1024" // Placeholder width
-                height="768" // Placeholder height
-              >
-                {({ ref, open }) => (
+        {images.map((image, index) => (
+          <Item
+            key={index}
+            original={image.source}
+            thumbnail={image.source}
+            width={image.width}
+            height={image.height}
+          >
+            {({ ref, open }) => (
+              <div style={{ display: index >= currentPairIndex * 2 && index <= currentPairIndex * 2 + 1 ? 'block' : 'none' }}>
+                <PolaroidFrame ref={ref as React.MutableRefObject<HTMLDivElement>} onClick={open} rotation={index % 2 === 0 ? -5 : 15}>
+                  <FrameImage />
                   <BookImage
-                    src={currentLeftImage}
-                    alt="Left page"
-                    ref={ref as React.MutableRefObject<HTMLImageElement>}
-                    onClick={open}
+                    src={image.source}
+                    alt={image.alt}
                   />
-                )}
-              </Item>
+                  <DateText>{image.date}</DateText>
+                </PolaroidFrame>
+              </div>
             )}
-          </BookPage>
-          <BookPage>
-            {currentRightImage && (
-              <Item
-                original={currentRightImage}
-                thumbnail={currentRightImage}
-                width="1024" // Placeholder width
-                height="768" // Placeholder height
-              >
-                {({ ref, open }) => (
-                  <BookImage
-                    src={currentRightImage}
-                    alt="Right page"
-                    ref={ref as React.MutableRefObject<HTMLImageElement>}
-                    onClick={open}
-                  />
-                )}
-              </Item>
-            )}
-          </BookPage>
-        </BookSpread>
-      </BookContainer>
+          </Item>
+        ))}
+      </GalleryWrapper>
     </Gallery>
   );
 };
 
 export default BookGallery;
 
-const BookContainer = styled.div`
+const GalleryWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-width: 600px; /* Max width for the book */
-  height: 400px; /* Fixed height for the book */
+  max-width: 400px; /* Adjusted max width for two polaroids */
+  height: 250px; /* Adjusted height for two polaroids */
   margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #f0e6d2 0%, #f0e6d2 50%, #e0d6c2 50%, #e0d6c2 100%); /* Placeholder book background */
-  border-radius: 5px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  gap: 20px; /* Space between polaroids */
   overflow: hidden; /* Hide overflowing content during swipe */
-`;
-
-const BookSpread = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.3s ease-in-out; /* For swipe animation */
-`;
-
-const BookPage = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
 `;
 
 const BookImage = styled.img`
@@ -156,6 +113,7 @@ const BookImage = styled.img`
   max-height: 100%;
   object-fit: contain;
   cursor: pointer;
+  z-index: 1;
 `;
 
 const NavButton = styled.button`
@@ -168,4 +126,28 @@ const NavButton = styled.button`
   padding: 10px 15px;
   cursor: pointer;
   z-index: 10;
+`;
+
+const PolaroidFrame = styled.div<{ rotation?: number }>`
+  position: relative;
+  width: 180px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 15px 35px 15px;
+  box-sizing: border-box;
+  transform: rotate(${(props) => props.rotation || 0}deg);
+`;
+
+const DateText = styled.p`
+  position: absolute;
+  bottom: 10px; /* Adjusted position */
+  font-family: sans-serif; /* Or a more suitable font */
+  font-size: 0.8rem;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  z-index: 3;
 `;
