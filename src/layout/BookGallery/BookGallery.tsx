@@ -5,14 +5,6 @@ import 'photoswipe/style.css';
 
 import images from './Images';
 
-interface ImageInfo {
-  alt: string;
-  source: string;
-  width: number;
-  height: number;
-  date: string;
-}
-
 import FrameImage from './FrameImage';
 
 
