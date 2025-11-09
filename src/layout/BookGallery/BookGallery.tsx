@@ -98,6 +98,11 @@ const GalleryWrapper = styled.div`
   align-items: center;
   gap: 20px; /* Space between polaroids */
   overflow: hidden; /* Hide overflowing content during swipe */
+
+  @media (max-width: 480px) {
+    height: 200px;
+    gap: 10px;
+  }
 `;
 
 const BookImage = styled.img`
@@ -131,6 +136,12 @@ const PolaroidFrame = styled.div<{ rotation?: number }>`
   padding: 15px 15px 35px 15px;
   box-sizing: border-box;
   transform: rotate(${(props) => props.rotation || 0}deg);
+
+  @media (max-width: 480px) {
+    width: 140px;
+    height: 170px;
+    padding: 10px 10px 25px 10px;
+  }
 `;
 
 const DateText = styled.p`
@@ -142,4 +153,9 @@ const DateText = styled.p`
   text-align: center;
   width: 100%;
   z-index: 3;
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    bottom: 5px;
+  }
 `;
