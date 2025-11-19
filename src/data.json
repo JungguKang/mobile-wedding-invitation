@@ -39,7 +39,7 @@
       "host": "신랑측",
       "accountInfo": [
         {
-          "name": "장세모",
+          "name": "강정구",
           "relation": "신랑",
           "bank": "카카오뱅크",
           "account": "1234-56-789012",
@@ -47,13 +47,13 @@
           "tossAccount": ""
         },
         {
-          "name": "장아빠",
+          "name": "강윤석",
           "relation": "아버지",
           "bank": "농협",
           "account": "123-45-678901"
         },
         {
-          "name": "이엄마",
+          "name": "고희경",
           "relation": "어머니",
           "bank": "농협",
           "account": "123-45-678901"
@@ -64,7 +64,7 @@
       "host": "신부측",
       "accountInfo": [
         {
-          "name": "황네모",
+          "name": "신유리",
           "relation": "신부",
           "bank": "토스뱅크",
           "account": "1234-5678-9012",
@@ -72,13 +72,13 @@
           "tossAccount": ""
         },
         {
-          "name": "황아빠",
+          "name": "신희봉",
           "relation": "아버지",
           "bank": "농협",
           "account": "123-45-678901"
         },
         {
-          "name": "이엄마",
+          "name": "이선미",
           "relation": "어머니",
           "bank": "농협",
           "account": "123-45-678901"
@@ -88,16 +88,16 @@
   ],
   "mapInfo": {
     "address1": "까사그랑데 센트로",
-    "address2": "서울 마포구 마포대로 92\n효성해링턴스퀘어 B동 7층\n02-2197-0230",
-    "naverMap": "https://naver.me/IM4RDses",
-    "kakaoMap": "https://kko.kakao.com/otznTfkVWV",
-    "lat": 37.54222,
-    "lon": 126.952708
+    "address2": "서울 광진구 능동로 87\n건대입구역 자이엘라 6층\n02-467-1002",
+    "naverMap": "https://naver.me/FaOCz45Z",
+    "kakaoMap": "https://kko.kakao.com/Es-cJOu7ON",
+    "lat": 37.5391,
+    "lon": 127.0696
   },
   "locationInfo": [
     {
       "title": "\uD83D\uDCCD 지하철",
-      "desc": "\uD83D\uDC49\uD83C\uDFFB 5·6호선 공덕역 7번 출구 (도보 2분)\n\uD83D\uDC49\uD83C\uDFFB 경의·중앙선, 공항철도 공덕역 10번 출구 (도보 30초)"
+      "desc": "\uD83D\uDC49\uD83C\uDFFB 2·7호선 건대입구역 5번 출구 (도보 2분)\n\uD83D\uDC49\uD83C\uDFFB"
     },
     {
       "title": "\uD83D\uDCCD 주차안내",
