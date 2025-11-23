@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { ref, push, serverTimestamp } from 'firebase/database';
 import { db } from '../../firebase';
 
 const CommentForm = () => {
@@ -17,12 +17,13 @@ const CommentForm = () => {
 
     setLoading(true);
     try {
-      const guestbookCollection = collection(db, 'guestbook');
-      await addDoc(guestbookCollection, {
+      const guestbookRef = ref(db, 'guestbook');
+      const newComment = {
         name: name,
         message: message,
         createdAt: serverTimestamp(),
-      });
+      };
+      await push(guestbookRef, newComment);
 
       alert('메시지를 보냈습니다. 💌');
       setName('');

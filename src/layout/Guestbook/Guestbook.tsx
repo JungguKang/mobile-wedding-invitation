@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { ref, onValue, query, orderByChild } from 'firebase/database';
 import { db } from '../../firebase';
 import { IComment } from '../../types/data';
 import CommentForm from './CommentForm.tsx';
@@ -10,21 +10,23 @@ const Guestbook = () => {
   const [comments, setComments] = useState<IComment[]>([]);
 
   useEffect(() => {
-    const q = query(collection(db, 'guestbook'), orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const fetchedComments = snapshot.docs.map((doc) => {
-        const data = doc.data();
-        return {
-          id: doc.id,
-          name: data.name,
-          message: data.message,
-          createdAt: data.createdAt?.toDate(), // Firestore Timestamp를 Date 객체로 변환
-        };
-      });
-      setComments(fetchedComments);
+    const guestbookRef = ref(db, 'guestbook');
+    const q = query(guestbookRef, orderByChild('createdAt'));
+
+    const unsubscribe = onValue(q, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const fetchedComments = Object.keys(data).map(key => ({
+          id: key,
+          ...data[key]
+        }));
+        // 최신순으로 정렬하기 위해 배열을 뒤집습니다.
+        setComments(fetchedComments.reverse());
+      } else {
+        setComments([]);
+      }
     });
 
-    // 컴포넌트가 언마운트될 때 실시간 리스너 정리
     return () => unsubscribe();
   }, []);
 
@@ -42,7 +44,7 @@ const Guestbook = () => {
             <CommentHeader>
               <CommentAuthor>{comment.name}</CommentAuthor>
               <CommentDate>
-                {comment.createdAt?.toLocaleDateString()}
+                {new Date(comment.createdAt).toLocaleDateString()}
               </CommentDate>
             </CommentHeader>
             <CommentMessage>{comment.message}</CommentMessage>
