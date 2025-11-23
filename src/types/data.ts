@@ -52,3 +52,11 @@ export interface ILocationInfo {
   title: string;
   desc: string;
 }
+
+// 방명록 데이터 타입을 추가합니다.
+export interface IComment {
+  id: string;
+  name: string;
+  message: string;
+  createdAt: Date;
+}

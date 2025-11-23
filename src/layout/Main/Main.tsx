@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 import data from 'data.json';
-import mainImg from '@/assets/images/05.jpg';
+import mainImg from '@/assets/images/00.jpg';
 import './Envelope.css';
 
 const Main = () => {
