@@ -4,13 +4,13 @@ import { getDatabase } from 'firebase/database'; // getDatabase import
 // TODO: https://firebase.google.com/docs/web/setup?hl=ko
 // 가이드에 따라 firebase config를 설정합니다.
 const firebaseConfig = {
-    apiKey: "AIzaSyAkgF8w55_9wpDSK4W7LXVcqkEJ9UNnXkU",
-    authDomain: "mobile-wedding-invitatio-30c9f.firebaseapp.com",
-    databaseURL: "https://mobile-wedding-invitatio-30c9f-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "mobile-wedding-invitatio-30c9f",
-    storageBucket: "mobile-wedding-invitatio-30c9f.firebasestorage.app",
-    messagingSenderId: "926543100436",
-    appId: "1:926543100436:web:08aff8b21bad501a910501"
+    apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_APP_FIREBASE_AUTH_DOMAIN,
+    databaseURL: import.meta.env.VITE_APP_FIREBASE_DATABASE_URL,
+    projectId: import.meta.env.VITE_APP_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_FIREBASE_APP_ID
 };
 
 
