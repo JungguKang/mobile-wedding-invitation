@@ -61,7 +61,7 @@ function App() {
         <Location />
       </Wrapper>
       <Wrapper>
-        <Heading1>신랑 신부에게</Heading1>
+        <Heading1>정구 유리에게</Heading1>
         <Guestbook />
       </Wrapper>
       <FloatingBar isVisible={isVisible} />

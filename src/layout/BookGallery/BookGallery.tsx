@@ -146,8 +146,8 @@ const PolaroidFrame = styled.div<{ rotation?: number }>`
 
 const DateText = styled.p`
   position: absolute;
-  bottom: 10px; /* Adjusted position */
-  font-family: sans-serif; /* Or a more suitable font */
+  bottom: 1px; /* Adjusted position */
+  font-family: RoundedFixedsys, serif; /* Or a more suitable font */
   font-size: 0.8rem;
   color: #333;
   text-align: center;

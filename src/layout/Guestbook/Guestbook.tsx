@@ -33,9 +33,7 @@ const Guestbook = () => {
   return (
     <GuestBookWrapper>
       <Heading2>
-        메시지를 남겨주세요.
-        <br />
-        결혼식 하루 뒤, 신랑 신부에게 전달됩니다.
+        정구와 유리에게 축하의 메시지를 남겨주세요.
       </Heading2>
       <CommentForm />
       <CommentList>
@@ -65,6 +63,7 @@ const GuestBookWrapper = styled.div`
 `;
 
 const CommentList = styled.ul`
+  font-family: RoundedFixedsys, serif;
   list-style: none;
   padding: 0;
   margin-top: 24px;
@@ -74,6 +73,7 @@ const CommentList = styled.ul`
 `;
 
 const CommentItem = styled.li`
+  font-family: RoundedFixedsys, serif;
   border: 1px solid #eee;
   border-radius: 8px;
   padding: 12px;
