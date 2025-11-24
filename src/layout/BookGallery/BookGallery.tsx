@@ -97,11 +97,11 @@ const GalleryWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px; /* Space between polaroids */
-  overflow: hidden; /* Hide overflowing content during swipe */
+  // overflow: hidden; /* Hide overflowing content during swipe */
 
   @media (max-width: 480px) {
     height: 200px;
-    gap: 10px;
+    gap: 5px;
   }
 `;
 
@@ -148,14 +148,14 @@ const DateText = styled.p`
   position: absolute;
   bottom: 1px; /* Adjusted position */
   font-family: RoundedFixedsys, serif; /* Or a more suitable font */
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #333;
   text-align: center;
   width: 100%;
   z-index: 3;
 
   @media (max-width: 480px) {
-    font-size: 0.7rem;
-    bottom: 5px;
+    font-size: 0.5rem;
+    bottom: 1px;
   }
 `;

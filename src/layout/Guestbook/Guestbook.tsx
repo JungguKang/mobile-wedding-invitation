@@ -33,7 +33,7 @@ const Guestbook = () => {
   return (
     <GuestBookWrapper>
       <Heading2>
-        정구와 유리에게 축하의 메시지를 남겨주세요.
+        정구와 유리에게 {'\n'}축하의 메시지를 남겨주세요.
       </Heading2>
       <CommentForm />
       <CommentList>

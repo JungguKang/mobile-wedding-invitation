@@ -31,7 +31,7 @@ const Accordion = ({ title, children }: IAccordionProps) => {
 export default Accordion;
 
 const AccordionWrapper = styled.div`
-  font-family: RoundedFixedsys, serif;
+  font-family: SUITE-Regular, serif;
   border: 1px solid #d4e7f9;
   margin-bottom: 20px;
   border-radius: 8px;
