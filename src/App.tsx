@@ -53,16 +53,16 @@ function App() {
         <BookGallery />
       </Wrapper>
       <Wrapper>
-        <Heading1>마음 전하실 곳</Heading1>
-        <Account />
-      </Wrapper>
-      <Wrapper>
         <Heading1>오시는 길</Heading1>
         <Location />
       </Wrapper>
       <Wrapper>
         <Heading1>신랑 신부에게</Heading1>
         <Guestbook />
+      </Wrapper>
+      <Wrapper>
+        <Heading1>마음 전하실 곳</Heading1>
+        <Account />
       </Wrapper>
       <FloatingBar isVisible={isVisible} />
     </Container>
