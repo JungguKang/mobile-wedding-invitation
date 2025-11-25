@@ -32,7 +32,11 @@ const Main = () => {
     <Container onClick={handleOpen}>
       <EnvelopeWrapper isOpen={isOpen}>
         <EnvelopeBody src={envelopeCover} alt="envelope" />
-        <Sticker src={stickerImg} alt="sticker" />
+        {/* <Sticker src={stickerImg} alt="sticker" /> */}
+        <StickerWrapper>
+          <StickerTop isOpen={isOpen} />
+          <StickerBottom isOpen={isOpen} />
+        </StickerWrapper>
         <Flap isOpen={isOpen} />
         <Letter isOpen={isOpen}>
           <MainImg src={mainImg} />
@@ -61,7 +65,7 @@ const EnvelopeWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
   width: 300px;
   height: 180px;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s 0.3s ease-in-out;
   transform-style: preserve-3d;
   perspective: 1000px;
   
@@ -80,15 +84,52 @@ const EnvelopeBody = styled.img`
   z-index: 0;
 `;
 
- const Sticker = styled.img`
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
+//  const Sticker = styled.img`
+//     position: absolute;
+//     width: 60px;
+//     height: 60px;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     z-index: 2;
+// `;
+
+// 스티커를 감싸고 중앙에 배치하는 Wrapper
+const StickerWrapper = styled.div`
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 `;
+
+// 스티커의 절반을 나타내는 공통 스타일
+const StickerHalf = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background-image: url(${stickerImg});
+  background-size: 100% 200%; /* 이미지를 두 배 길이로 늘려 위/아래를 선택 */
+  transition: transform 0.3s ease-out;
+`;
+
+const StickerTop = styled(StickerHalf)<{ isOpen: boolean }>`
+  top: 0;
+  background-position: top;
+  ${(props) => props.isOpen && `
+    transform: translateY(-8px) rotateZ(-15deg);
+  `}
+`;
+
+const StickerBottom = styled(StickerHalf)<{ isOpen: boolean }>`
+  bottom: 0;
+  background-position: bottom;
+  ${(props) => props.isOpen && `
+    transform: translateY(8px) rotateZ(15deg);
+  `}                                                                                                                 ▄
+`;   
 
 const Flap = styled.div<{ isOpen: boolean }>`
   position: absolute;
@@ -100,7 +141,7 @@ const Flap = styled.div<{ isOpen: boolean }>`
   border-width: 90px 150px 0 150px;
   border-color: #ffffff transparent transparent transparent;
   transform-origin: top;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s 0.3s ease-in-out;
   transform: rotateX(0deg);
   z-index: 1;
 
@@ -123,7 +164,7 @@ const Letter = styled.div<{ isOpen: boolean }>`
   padding: 20px;
   text-align: center;
   opacity: 0;
-  transition: opacity 0.6s 0.3s ease-in-out, transform 0.6s 0.3s ease-in-out;
+  transition: opacity 0.6s 0.5s ease-in-out, transform 0.6s 0.5s ease-in-out;
   z-index: 2;
 
   ${(props) => props.isOpen && `
