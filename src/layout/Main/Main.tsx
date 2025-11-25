@@ -2,19 +2,20 @@ import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 import data from 'data.json';
 import mainImg from '@/assets/images/00.jpg';
-import './Envelope.css';
+import envelopeCover from '/envelope_cover.png'; 
+import stickerImg from '/sticker.png';
 
 const Main = () => {
   const { greeting } = data;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
-    setIsOpen(!isOpen);
+      setIsOpen(!isOpen);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!isOpen && window.scrollY > 100) { // Trigger when scrolled down 100px
+      if (!isOpen && window.scrollY > 100) {
         setIsOpen(true);
         window.removeEventListener('scroll', handleScroll);
       }
@@ -28,21 +29,108 @@ const Main = () => {
   }, [isOpen]);
 
   return (
-    <div className="envelope-container" onClick={handleOpen}>
-      <div className={`envelope ${isOpen ? 'open' : ''}`}>
-        <div className="letter">
+    <Container onClick={handleOpen}>
+      <EnvelopeWrapper isOpen={isOpen}>
+        <EnvelopeBody src={envelopeCover} alt="envelope" />
+        <Sticker src={stickerImg} alt="sticker" />
+        <Flap isOpen={isOpen} />
+        <Letter isOpen={isOpen}>
           <MainImg src={mainImg} />
           <MainTitle>{greeting.title}</MainTitle>
           <SubTitle>{greeting.eventDetail}</SubTitle>
-        </div>
-        <div className="envelope-front"></div>
-        <div className="flap"></div>
-      </div>
-    </div>
+        </Letter>
+      </EnvelopeWrapper>
+    </Container>
   );
 };
 
 export default Main;
+
+// --- Styled Components ---
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  cursor: pointer;
+  background-color: transparent;
+`;
+
+const EnvelopeWrapper = styled.div<{ isOpen: boolean }>`
+  position: relative;
+  width: 300px;
+  height: 180px;
+  transition: transform 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  
+  ${(props) => props.isOpen && `
+    transform: translateY(100px);
+  `}
+`;
+
+const EnvelopeBody = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  z-index: 0;
+`;
+
+ const Sticker = styled.img`
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+`;
+
+const Flap = styled.div<{ isOpen: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 90px 150px 0 150px;
+  border-color: #ffffff transparent transparent transparent;
+  transform-origin: top;
+  transition: transform 0.6s ease-in-out;
+  transform: rotateX(0deg);
+  z-index: 1;
+
+  ${(props) => props.isOpen && `
+    transform: rotateX(180deg);
+    z-index: 0;
+  `}
+`;
+
+const Letter = styled.div<{ isOpen: boolean }>`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 260px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.08);
+  padding: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.6s 0.3s ease-in-out, transform 0.6s 0.3s ease-in-out;
+  z-index: 2;
+
+  ${(props) => props.isOpen && `
+    opacity: 1;
+    transform: translate(-50%, 150px);
+  `}
+`;
 
 const MainImg = styled.img`
   width: 90%;
