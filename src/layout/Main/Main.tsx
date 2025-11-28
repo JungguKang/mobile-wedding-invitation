@@ -31,7 +31,7 @@ const Main = () => {
   return (
     <Container onClick={handleOpen}>
       <EnvelopeWrapper isOpen={isOpen}>
-        <EnvelopeBody src={envelopeCover} alt="envelope" />
+        <EnvelopeBody src={envelopeCover} alt="envelope" loading="lazy" />
         {/* <Sticker src={stickerImg} alt="sticker" /> */}
         <StickerWrapper>
           <StickerTop isOpen={isOpen} />
@@ -39,7 +39,7 @@ const Main = () => {
         </StickerWrapper>
         <Flap isOpen={isOpen} />
         <Letter isOpen={isOpen}>
-          <MainImg src={mainImg} />
+          <MainImg src={mainImg} loading="lazy" />
           <MainTitle>{greeting.title}</MainTitle>
           <SubTitle>{greeting.eventDetail}</SubTitle>
         </Letter>
@@ -128,8 +128,8 @@ const StickerBottom = styled(StickerHalf)<{ isOpen: boolean }>`
   background-position: bottom;
   ${(props) => props.isOpen && `
     transform: translateY(8px) rotateZ(15deg);
-  `}                                                                                                                 ▄
-`;   
+  `}
+`;
 
 const Flap = styled.div<{ isOpen: boolean }>`
   position: absolute;
@@ -139,7 +139,7 @@ const Flap = styled.div<{ isOpen: boolean }>`
   height: 0;
   border-style: solid;
   border-width: 90px 150px 0 150px;
-  border-color: #ffffff transparent transparent transparent;
+  border-color: #f7f7f7ff transparent transparent transparent;
   transform-origin: top;
   transition: transform 0.6s 0.3s ease-in-out;
   transform: rotateX(0deg);
@@ -147,7 +147,6 @@ const Flap = styled.div<{ isOpen: boolean }>`
 
   ${(props) => props.isOpen && `
     transform: rotateX(180deg);
-    z-index: 0;
   `}
 `;
 
@@ -164,7 +163,7 @@ const Letter = styled.div<{ isOpen: boolean }>`
   padding: 20px;
   text-align: center;
   opacity: 0;
-  transition: opacity 0.6s 0.5s ease-in-out, transform 0.6s 0.5s ease-in-out;
+  transition: opacity 0.6s 0.7s ease-in-out, transform 0.6s 0.5s ease-in-out;
   z-index: 2;
 
   ${(props) => props.isOpen && `

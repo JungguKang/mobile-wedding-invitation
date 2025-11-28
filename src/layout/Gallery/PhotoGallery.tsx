@@ -34,6 +34,7 @@ const PhotoGallery = () => {
                   src={image.source}
                   ref={ref as React.MutableRefObject<HTMLImageElement>}
                   onClick={open}
+                  loading="lazy" // loading="lazy" 속성 추가
                 />
               )}
             </Item>

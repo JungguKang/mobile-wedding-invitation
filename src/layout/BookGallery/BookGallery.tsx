@@ -73,6 +73,7 @@ const BookGallery: React.FC = () => {
                   <BookImage
                     src={image.source}
                     alt={image.alt}
+                    loading="lazy"
                   />
                   <DateText>{image.date}</DateText>
                 </PolaroidFrame>
